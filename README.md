@@ -22,7 +22,7 @@ case "${c}" in
 esac;
 [ -z "$s" ] && printf "No valid choices\n" && exit;
 t=$(mktemp -d);
-git clone -b feature/core --depth 1 https://github.com/shimarulin/clinerules.git "$t";
+git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git "$t";
 mkdir -p .clinerules;
 echo "$s" | tr ' ' '\n' | while read v; do
   case $v in
