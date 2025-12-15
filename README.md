@@ -5,46 +5,41 @@
 ### Interactive multiselect
 
 ```bash
-(printf "\nSelect rules (comma/space separated, 'a' for all):\n"; printf "  1) core\n  2) shell\n"; read -r c; [ -z "$c" ] && printf "Cancel\n" && exit; case "${c}" in *[aA]*) s="1 2";; *) s=$(echo "$c" | tr ', ' '\n' | grep -E '^[1-2]$' | sort -u);; esac; [ -z "$s" ] && printf "No valid choices\n" && exit; t=$(mktemp -d); git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git "$t"; mkdir -p .clinerules; for v in $s; do case $v in 1) d=core;; 2) d=shell;; esac; cp -r "$t/clinerules_$d/." .clinerules/ 2>/dev/null; done; rm -rf "$t"; echo -n "Selected: "; for v in $s; do case $v in 1) echo -n "core ";; 2) echo -n "shell ";; esac; done; printf "\nDone\n")
+(printf "\nSelect rules (comma/space separated, 'a' for all):\n"; printf "  1) strict\n  2) memo\n"; read -r c; [ -z "$c" ] && printf "Cancel\n" && exit; case "${c}" in *[aA]*) s="1 2";; *) s=$(echo "$c" | tr ', ' '\n' | grep -E '^[1-2]$' | sort -u);; esac; [ -z "$s" ] && printf "No valid choices\n" && exit; t=$(mktemp -d); git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git "$t"; mkdir -p .clinerules; echo "$s" | tr ' ' '\n' | while read v; do case $v in 1) d=strict;; 2) d=memo;; esac; cp -r "$t/clinerules_$d/." .clinerules/ 2>/dev/null; done; rm -rf "$t"; echo -n "Selected: "; echo "$s" | tr ' ' '\n' | while read v; do case $v in 1) echo -n "strict ";; 2) echo -n "memo ";; esac; done; printf "\nDone\n")
 ```
 
 **Readable version:**
 
 ```bash
 (
-  printf "\nSelect rules (comma/space separated, 'a' for all):\n"
-  printf "  1) core\n  2) shell\n"
-  read -r c
-  [ -z "$c" ] && printf "Cancel\n" && exit
-
-  case "${c}" in
-    *[aA]*) s="1 2";;
-    *) s=$(echo "$c" | tr ', ' '\n' | grep -E '^[1-2]$' | sort -u);;
-  esac
-
-  [ -z "$s" ] && printf "No valid choices\n" && exit
-
-  t=$(mktemp -d)
-  git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git "$t"
-  mkdir -p .clinerules
-
-  for v in $s; do
-    case $v in
-      1) d=core;;
-      2) d=shell;;
-    esac
-    cp -r "$t/clinerules_$d/." .clinerules/ 2>/dev/null
-  done
-
-  rm -rf "$t"
-  echo -n "Selected: "
-  for v in $s; do
-    case $v in
-      1) echo -n "core ";;
-      2) echo -n "shell ";;
-    esac
-  done
-  printf "\nDone\n"
+printf "\nSelect rules (comma/space separated, 'a' for all):\n";
+printf "  1) strict\n  2) memo\n";
+read -r c;
+[ -z "$c" ] && printf "Cancel\n" && exit;
+case "${c}" in
+  *[aA]*) s="1 2";;
+  *) s=$(echo "$c" | tr ', ' '\n' | grep -E '^[1-2]$' | sort -u);;
+esac;
+[ -z "$s" ] && printf "No valid choices\n" && exit;
+t=$(mktemp -d);
+git clone -b feature/core --depth 1 https://github.com/shimarulin/clinerules.git "$t";
+mkdir -p .clinerules;
+echo "$s" | tr ' ' '\n' | while read v; do
+  case $v in
+    1) d=strict;;
+    2) d=memo;;
+  esac;
+  cp -r "$t/clinerules_$d/." .clinerules/ 2>/dev/null;
+done;
+rm -rf "$t";
+echo -n "Selected: ";
+echo "$s" | tr ' ' '\n' | while read v; do
+  case $v in
+    1) echo -n "strict ";;
+    2) echo -n "memo ";;
+  esac;
+done;
+printf "\nDone\n"
 )
 ```
 
@@ -64,7 +59,7 @@
 12. **Merge functionality** - Combines both rule sets into single directory
 13. **Smart parsing** - Handles mixed separators (commas, spaces, or both)
 14. **Case-insensitive 'a'** - Both 'a' and 'A' work for selecting all
-15. **Clear output** - Shows "Selected: core shell" when both are chosen
+15. **Clear output** - Shows "Selected: strict memo" when both are chosen
 
 **Implementation details:**
 - Uses `mktemp` for secure temporary directory creation
@@ -78,7 +73,7 @@
 ### Interactive select
 
 ```sh
-(echo "\nSelect:"; echo "  1) strict\n  2) memo"; read c; case $c in 1)v=core;;2)v=shell;;3)v=ts;;4)v=go;;*)echo "Cancel"; exit;; esac; t=$(mktemp -d); git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $t; cp -r $t/clinerules_$v/. .clinerules; rm -rf $t; echo "$v Done")
+(echo "\nSelect:"; echo "  1) strict\n  2) memo"; read c; case $c in 1)v=strict;;2)v=memo;;3)v=ts;;4)v=go;;*)echo "Cancel"; exit;; esac; t=$(mktemp -d); git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $t; cp -r $t/clinerules_$v/. .clinerules; rm -rf $t; echo "$v Done")
 ```
 
 ### Installation command template
