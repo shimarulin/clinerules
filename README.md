@@ -83,29 +83,29 @@ printf "\nDone\n"
 ### Installation command template
 
 ```sh
-CLR_VARIANT=<variant> CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
+CLR_VARIANT=<variant> CLR_TMP=$(mktemp -d) && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
 ```
 
 #### Strict rules
 
 ```sh
-CLR_VARIANT=strict CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
+CLR_VARIANT=strict CLR_TMP=$(mktemp -d) && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
 ```
 
 #### Memo rules
 
 ```sh
-CLR_VARIANT=memo CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
+CLR_VARIANT=memo CLR_TMP=$(mktemp -d) && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
 ```
 
 #### MCP rules
 
 ```sh
-CLR_VARIANT=mcp CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
+CLR_VARIANT=mcp CLR_TMP=$(mktemp -d) && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
 ```
 
 #### References rules
 
 ```sh
-CLR_VARIANT=references CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
+CLR_VARIANT=references CLR_TMP=$(mktemp -d) && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
 ```
