@@ -92,6 +92,12 @@ CLR_VARIANT=<variant> CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https
 CLR_VARIANT=strict CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
 ```
 
+#### Memo rules
+
+```sh
+CLR_VARIANT=memo CLR_TMP=$(mktemp -d)  && git clone -b main --depth 1 https://github.com/shimarulin/clinerules.git $CLR_TMP && cp -r $CLR_TMP/clinerules_$CLR_VARIANT/. .clinerules && rm -rf $CLR_TMP
+```
+
 #### MCP rules
 
 ```sh
